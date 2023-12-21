@@ -1,0 +1,98 @@
+body {
+  background-color: #f0f0f0;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  display: flex;
+}
+
+.loading-container {
+  text-align: center;
+}
+
+.loading-arrows {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  position: relative;
+}
+
+.loading-arrows:before, .loading-arrows:after {
+  content: "";
+  border: 3px solid #3498db;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: 2s linear infinite rotate;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.loading-arrows:before {
+  border-left: 3px solid #0000;
+  border-right: 3px solid #0000;
+  margin-top: -15px;
+  margin-left: -15px;
+}
+
+.loading-arrows:after {
+  border-top: 3px solid #0000;
+  border-bottom: 3px solid #0000;
+  margin-top: -12px;
+  margin-left: -12px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-container {
+  background-color: #eee;
+  border-radius: 5px;
+  width: 300px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #3498db;
+  width: 0;
+  height: 30px;
+  transition: width .3s;
+}
+
+.progress-text {
+  color: #333;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.email-icon-container {
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  background-color: #3498db;
+  padding: 1%;
+  position: absolute;
+  bottom: 2%;
+}
+
+.email-icon {
+  color: #fff;
+  font-size: 48px;
+  text-decoration: none;
+}
+
+.email-icon:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=index.2cdaf7bc.css.map */
