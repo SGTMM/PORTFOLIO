@@ -1,4 +1,97 @@
 body {
   margin: 0;
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.loading-container {
+  text-align: center;
+}
+
+.loading-arrows {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.loading-arrows:before,
+.loading-arrows:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #3498db;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+
+.loading-arrows:before {
+  margin-top: -15px;
+  margin-left: -15px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+}
+
+.loading-arrows:after {
+  margin-top: -12px;
+  margin-left: -12px;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-container {
+  width: 300px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 0;
+  height: 30px;
+  background-color: #3498db;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.email-icon-container {
+  text-align: center;
+  background-color: #3498db;
+  padding: 1%;
+  color: #fff;
+  position: absolute;
+  bottom: 2%;
+  cursor: pointer;
+}
+
+.email-icon {
+  font-size: 48px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.email-icon:hover {
+  text-decoration: underline;
 }

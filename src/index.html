@@ -3,12 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="module" src="rapier-wrapper.js"></script>
-    <script type="module" src="three_wrapper.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./three_wrapper.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <script src="sketch.js"></script>
+    <div class="loading-container">
+      <div class="loading-arrows"></div>
+      <div class="loading-text">Loading...</div>
+      <div class="loading-text">This will take a minute</div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress"></div>
+      </div>
+      <div class="progress-text" id="progressText">Progress: 0%</div>
+    </div>
+    <div class="email-icon-container" onclick="copyToClipboard()">
+      <a href="mailto:megamatteo27@gmail.com" class="email-icon">
+        <i class="material-icons">email</i>
+      </a>
+    </div>
+    <script src="./sketch.js"></script>
   </body>
 </html>
