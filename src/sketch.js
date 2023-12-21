@@ -168,6 +168,10 @@ function incrementProgress() {
     progressText.textContent = `Progress: ${currentProgress.toFixed(1)}%`;
 }
 
+document.getElementsByClassName("email-icon-container")[0].addEventListener("click", () => {
+    copyToClipboard()
+})
+
 function copyToClipboard() {
     const email = "megamatteo27@gmail.com"; // Replace with your actual email address
 
