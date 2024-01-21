@@ -2,13 +2,15 @@ var camera, scene, renderer
 
 var model, env_texture;
 
-var plane = [null, null, null, null, null, null]
+var plane = [null, null, null, null, null, null, null, null, null]
 
 var texture2;
 
 var manager;
 
 var loading_icon = document.getElementsByClassName("loading-container")[0]
+
+var number_icon = 9;
 
 wait()
 
@@ -38,7 +40,7 @@ function load_models() {
     };
     texture2 = new THREE.TextureLoader(manager).load("./env.jpg")
     texture2.mapping = THREE.EquirectangularReflectionMapping
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < number_icon; i++) {
         const geometry = new THREE.PlaneGeometry(1, 0.7);
         var texture = new THREE.TextureLoader(manager).load(`./texture${i + 1}.png`);
         texture.wrapS = THREE.RepeatWrapping;
@@ -108,8 +110,8 @@ function start() {
     controls.enableDamping = true
     controls.enablePan = false
     controls.enableZoom = false
-    controls.minAzimuthAngle = -Math.PI / 2
-    controls.maxAzimuthAngle = Math.PI / 2
+    //controls.minAzimuthAngle = -Math.PI / 2
+    //controls.maxAzimuthAngle = Math.PI / 2
     controls.rotateSpeed = 0.1
 
     controls.minPolarAngle = Math.PI / 2;
@@ -130,23 +132,35 @@ function start() {
 
     scene.add(model)
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < number_icon; i++) {
         scene.add(plane[i]);
     }
 
+    azimuth_angle = -Math.PI / 2
+    prev_azimuth_angle = azimuth_angle
+
     update()
 }
+
+var azimuth_angle = 0;
+var prev_azimuth_angle = 0;
+var azimuth_diff = 0;
 
 
 function update() {
     controls.update()
     camera.lookAt(new THREE.Vector3(0, 1, 0))
-    for (var i = 0; i < 6; i++) {
-        plane[i].position.x = Math.cos(controls.getAzimuthalAngle() - (Math.PI / 2) + (i) * -Math.PI / 2.5) * 1.5
-        plane[i].position.z = Math.sin(controls.getAzimuthalAngle() - (Math.PI / 2) + (i) * -Math.PI / 2.5) * 1.5
-        plane[i].position.y = controls.getAzimuthalAngle() + Math.PI - (i) * 0.65 + 0.2
+
+    azimuth_diff = controls.getAzimuthalAngle() - prev_azimuth_angle
+    if (azimuth_diff > -6 && azimuth_diff < 6) azimuth_angle += azimuth_diff
+
+    for (var i = 0; i < number_icon; i++) {
+        plane[i].position.x = Math.cos(azimuth_angle - (Math.PI / 2) + (i) * -Math.PI / 2.5) * 1.5
+        plane[i].position.z = Math.sin(azimuth_angle - (Math.PI / 2) + (i) * -Math.PI / 2.5) * 1.5
+        plane[i].position.y = azimuth_angle + Math.PI - (i) * 0.65 + 0.2
         plane[i].lookAt(new THREE.Vector3(0, plane[i].position.y, 0))
     }
+    prev_azimuth_angle = controls.getAzimuthalAngle()
     renderer.render(scene, camera);
     requestAnimationFrame(update)
 }
@@ -159,13 +173,14 @@ function incrementProgress() {
     let currentProgress = parseFloat(progressBar.style.width) || 0;
 
     // Increment the progress by one division
-    currentProgress += 1.69491525424;
+    currentProgress += 1.613;
 
     // Update the progress bar width
     progressBar.style.width = `${currentProgress}%`;
 
     // Update the progress text
     progressText.textContent = `Progress: ${currentProgress.toFixed(1)}%`;
+
 }
 
 document.getElementsByClassName("email-icon-container")[0].addEventListener("click", () => {
